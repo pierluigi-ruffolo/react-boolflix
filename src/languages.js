@@ -5,7 +5,7 @@ import spagna from "./assets/img-fleg/spagna.png";
 import tedesco from "./assets/img-fleg/germania.png";
 import giapponese from "./assets/img-fleg/giappone.png";
 import portoghese from "./assets/img-fleg/portogallo.png";
-import Hindi from "./assets/img-fleg/india.png";
+import hindi from "./assets/img-fleg/india.png";
 import cinese from "./assets/img-fleg/cina.png";
 import russo from "./assets/img-fleg/russia.png";
 const objLenguage = {
@@ -16,7 +16,7 @@ const objLenguage = {
   de: tedesco,
   ja: giapponese,
   pt: portoghese,
-  hi: Hindi,
+  hi: hindi,
   zh: cinese,
   ru: russo,
 };
