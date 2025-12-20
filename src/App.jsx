@@ -3,9 +3,24 @@ import axios from "axios";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
+  const apiKey = import.meta.env.VITE_API_KEY;
   const [valueInput, setValueInput] = useState("");
+  const [film, SetFilm] = useState([]);
 
-  function searchFilm() {}
+  function searchFilm() {
+    if (!isNaN(valueInput)) {
+      alert("inserisci un film");
+      setValueInput("");
+      return;
+    }
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${valueInput}&language=it-IT`
+      )
+      .then((response) => {
+        SetFilm(response.data.results);
+      });
+  }
 
   return (
     <>
