@@ -7,15 +7,14 @@ export default function Card({ item }) {
   const language = item.original_language;
 
   return (
-    <div className="col-12 col-sm-4 col-lg-3 p-2">
+    <div className="card-rp">
       <h1>Titolo: {title}</h1>
-
       <h2>Titolo: Originale: {originalTitle}</h2>
       <p>Lingua: {language} </p>
       {objLenguage[language] === undefined ? (
-        <img src={imgmondo} alt={title} />
+        <img src={imgmondo} alt={title} className="img-language" />
       ) : (
-        <img src={objLenguage[language]} alt={title} />
+        <img src={objLenguage[language]} alt={title} className="img-language" />
       )}
     </div>
   );

@@ -17,6 +17,28 @@ main {
   overflow: auto;
 }
 
-img {
+.img-language {
   width: 40px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.col-rp {
+  position: relative;
+  overflow: auto;
+  min-height: 500px;
+}
+
+.img-movie {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.card-rp {
+  position: absolute;
+  top: 0;
+  opacity: 0;
 }
