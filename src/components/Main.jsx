@@ -19,9 +19,7 @@ export default function Main({ serieTv, films }) {
                   alt=""
                 />
               )}
-              <div className="dd">
-                <Card item={film} />
-              </div>
+              <Card item={film} />
             </div>
           ))}
           <h2 className={`mt-3 fs-1 ${serieTv.length === 0 ? "d-none" : ""}`}>

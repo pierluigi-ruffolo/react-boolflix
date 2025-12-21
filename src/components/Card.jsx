@@ -8,18 +8,37 @@ export default function Card({ item }) {
   const overview = item.overview;
   return (
     <div className="card-rp">
-      <h3>
-        <span>Titolo</span>: {title}
-      </h3>
       <h4>
-        <span>Titolo Originale</span>: {originalTitle}
+        <span>Titolo</span>: {title}
       </h4>
+      <h5 className="mt-3">
+        <span>Titolo Originale</span>: {originalTitle}
+      </h5>
+
       {objLenguage[language] === undefined ? (
-        <img src={imgmondo} alt={title} className="img-language" />
+        <div className="mt-3">
+          <span>Lingua: </span>
+          <img src={imgmondo} alt={title} className="img-language" />
+        </div>
       ) : (
-        <img src={objLenguage[language]} alt={title} className="img-language" />
+        <div className="mt-3">
+          <span>Lingua: </span>
+          <img
+            src={objLenguage[language]}
+            alt={title}
+            className="img-language"
+          />
+        </div>
       )}
-      <p>{overview}</p>
+
+      {overview === "" ? (
+        ""
+      ) : (
+        <p className="mt-3">
+          <span>overview: </span>
+          {overview}
+        </p>
+      )}
     </div>
   );
 }
