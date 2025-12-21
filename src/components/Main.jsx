@@ -1,4 +1,5 @@
 import Card from "./Card";
+
 export default function Main({ serieTv, films }) {
   return (
     <main className="pt-5">
