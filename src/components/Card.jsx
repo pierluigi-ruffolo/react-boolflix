@@ -2,10 +2,20 @@ import imgmondo from "../assets/img-fleg/mondo.png";
 import objLenguage from "../languages";
 
 export default function Card({ item }) {
+  const { original_language, overview, vote_average } = item;
   const title = item.title || item.name;
   const originalTitle = item.original_title || item.original_name;
-  const language = item.original_language;
-  const overview = item.overview;
+  const division = vote_average / 2;
+  const roundUp = Math.ceil(division);
+  let stars = "";
+  for (let i = 1; i <= 5; i++) {
+    if (roundUp > i) {
+      stars += "⭐";
+    } else {
+      stars += "☆";
+    }
+  }
+
   return (
     <div className="card-rp">
       <h4>
@@ -15,7 +25,7 @@ export default function Card({ item }) {
         <span>Titolo Originale</span>: {originalTitle}
       </h5>
 
-      {objLenguage[language] === undefined ? (
+      {objLenguage[original_language] === undefined ? (
         <div className="mt-3">
           <span>Lingua: </span>
           <img src={imgmondo} alt={title} className="img-language" />
@@ -24,13 +34,13 @@ export default function Card({ item }) {
         <div className="mt-3">
           <span>Lingua: </span>
           <img
-            src={objLenguage[language]}
+            src={objLenguage[original_language]}
             alt={title}
             className="img-language"
           />
         </div>
       )}
-
+      <p>{stars}</p>
       {overview === "" ? (
         ""
       ) : (
