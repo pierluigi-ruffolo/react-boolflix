@@ -5,6 +5,17 @@ export default function Main({ serieTv, films }) {
     <main className="pt-5">
       <div className="container fs-5 p-3">
         <div className="row">
+          {serieTv.length === 0 && films.length === 0 ? (
+            <h1 className="text-center">Ricerca un film o una serieTv...</h1>
+          ) : (
+            <div className="py-3 border-bottom border-secondary mb-4">
+              <h1 className="">
+                Risultati della ricerca:
+                <span> {films.length + serieTv.length} </span>
+                titoli trovati
+              </h1>
+            </div>
+          )}
           <h2 className={`mt-3 fs-1 ${films.length === 0 ? "d-none" : ""}`}>
             Film
           </h2>

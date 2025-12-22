@@ -1,17 +1,19 @@
 export default function Header({ valueInput, setValueInput, searchFilm }) {
   return (
-    <header className="d-flex justify-content-between align-items-center text-center">
-      <h1 className="ps-5 d-none d-md-block">BoolFlix</h1>
-      <div className="pe-5">
+    <header className="d-flex justify-content-center justify-content-md-between align-items-center">
+      <div className="ms-5">
+        <h1 className="d-none d-md-block">BoolFlix</h1>
+      </div>
+      <div className="d-flex">
         <input
-          className="me-3 fs-5"
-          type="text"
-          placeholder="Ricerca un film..."
+          className="me-2 fs-4"
+          type="search"
+          placeholder="search..."
           value={valueInput}
           onChange={(e) => setValueInput(e.target.value)}
         />
-        <button onClick={searchFilm} className="btn btn-primary">
-          Cerca
+        <button onClick={searchFilm} className="btn btn-primary me-3">
+          search
         </button>
       </div>
     </header>
