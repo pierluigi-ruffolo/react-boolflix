@@ -21,9 +21,13 @@ export default function Card({ item }) {
       <h4>
         <span>Titolo</span>: {title}
       </h4>
-      <h5 className="mt-3">
-        <span>Titolo Originale</span>: {originalTitle}
-      </h5>
+      {title === originalTitle ? (
+        ""
+      ) : (
+        <h5 className="mt-3">
+          <span>Titolo Originale</span>: {originalTitle}
+        </h5>
+      )}
 
       {objLenguage[original_language] === undefined ? (
         <div className="mt-3">

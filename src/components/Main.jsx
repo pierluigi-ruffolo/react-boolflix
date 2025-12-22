@@ -1,12 +1,17 @@
 import Card from "./Card";
 import imgBoolFlix from "../assets/boolflix.png";
-export default function Main({ serieTv, films }) {
+import { useState } from "react";
+export default function Main({ serieTv, films, hasSearched }) {
   return (
     <main className="pt-5">
       <div className="container fs-5 p-3">
         <div className="row">
           {serieTv.length === 0 && films.length === 0 ? (
-            <h1 className="text-center">Ricerca un film o una serieTv...</h1>
+            <h1 className="text-center">
+              {hasSearched === true
+                ? "Nessun Film trovato"
+                : "Ricerca un film o una serie Tv..."}
+            </h1>
           ) : (
             <div className="py-3 border-bottom border-secondary mb-4">
               <h1 className="">
