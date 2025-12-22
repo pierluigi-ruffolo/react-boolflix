@@ -1,16 +1,31 @@
-# React + Vite
+🎬 BoolFlix – React + TMDB
+Questo progetto è una webapp sviluppata in React che permette di cercare film e serie TV utilizzando le API di The Movie Database (TMDB), mostrando i risultati in stile Netflix con card, bandiere delle lingue e valutazione a stelle.
+​
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+✨ Funzionalità
+Ricerca di film tramite endpoint search/movie.
+​
 
-Currently, two official plugins are available:
+Ricerca di serie TV tramite endpoint search/tv, usando la stessa query.
+​
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Visualizzazione di:
 
-## React Compiler
+Titolo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Titolo originale
 
-## Expanding the ESLint configuration
+Lingua con bandiera (o icona “mondo” se la lingua non è mappata)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Voto medio convertito in 1–5 stelle (arrotondato per eccesso).
+
+Poster/immagine di sfondo presi da TMDB con backdrop_path e base URL immagini https://image.tmdb.org/t/p/w500.
+​
+
+Layout:
+
+Header con logo “BoolFlix” e barra di ricerca
+
+Due sezioni: Film e Serie TV
+
+Card con dettagli (titoli, lingua, overview) sovrapposti sopra l’immagine.
