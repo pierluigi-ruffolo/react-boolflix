@@ -1,25 +1,44 @@
 import Card from "./Card";
 import imgBoolFlix from "../assets/boolflix.png";
-import { useState } from "react";
-export default function Main({ serieTv, films, hasSearched }) {
+
+export default function Main({ serieTv, films, hasSearched, loading }) {
   return (
     <main className="pt-5">
       <div className="container fs-5 p-3">
         <div className="row">
-          {serieTv.length === 0 && films.length === 0 ? (
-            <h1 className="text-center">
-              {hasSearched === true
-                ? "Nessun Film trovato"
-                : "Ricerca un film o una serie Tv..."}
-            </h1>
+          {hasSearched === false && loading === false ? (
+            <div className="text-center">
+              <h2>
+                Usa la barra di ricerca per trovare i tuoi titoli preferiti...
+              </h2>
+            </div>
           ) : (
+            ""
+          )}
+          <h1 className={loading === false ? "d-none" : ""}>Loading....</h1>
+          {serieTv.length !== 0 || films.length !== 0 ? (
             <div className="py-3 border-bottom border-secondary mb-4">
-              <h1 className="">
+              <h1>
                 Risultati della ricerca:
                 <span> {films.length + serieTv.length} </span>
                 titoli trovati
               </h1>
             </div>
+          ) : (
+            ""
+          )}
+          {loading === false &&
+          hasSearched &&
+          films.length === 0 &&
+          serieTv.length === 0 ? (
+            <div className="alert alert-warning text-center">
+              <h3>Spiacenti, non abbiamo trovato nulla per la tua ricerca.</h3>
+              <p>
+                Prova a controllare l'ortografia o usa termini più generici.
+              </p>
+            </div>
+          ) : (
+            ""
           )}
           <h2 className={`mt-3 fs-1 ${films.length === 0 ? "d-none" : ""}`}>
             Film

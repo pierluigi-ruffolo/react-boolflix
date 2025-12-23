@@ -12,7 +12,7 @@ export default function Header({
       </div>
       <div className="d-flex">
         <select
-          className="mx-2"
+          className="mx-2 p-2"
           onChange={(e) => {
             SetValueGenres(e.target.value);
           }}

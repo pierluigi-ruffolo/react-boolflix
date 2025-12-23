@@ -12,6 +12,7 @@ function App() {
   const [films, SetFilms] = useState([]);
   const [serieTv, setSerieTv] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
+  const [loading, Setloading] = useState(false);
   const [valueGenres, SetValueGenres] = useState("");
   const [genresMovie, setGenresMovie] = useState([]);
   const [genrestv, setGenresTv] = useState([]);
@@ -20,6 +21,10 @@ function App() {
   useEffect(() => {
     SetGenres([...genresMovie, ...genrestv]);
   }, [genresMovie, genrestv]);
+
+  useEffect(() => {
+    Setloading(false);
+  }, [films, serieTv]);
 
   useEffect(() => {
     axios
@@ -45,6 +50,7 @@ function App() {
       return;
     }
     const convValueGenres = parseInt(valueGenres);
+    Setloading(true);
     setHasSearched(true);
     axios
       .get(
@@ -52,7 +58,7 @@ function App() {
       )
       .then((responseMovie) => {
         const resultsMovie = responseMovie.data.results;
-
+        console.log(resultsMovie);
         if (valueGenres === "") {
           SetFilms(resultsMovie);
         } else {
@@ -69,6 +75,7 @@ function App() {
       )
       .then((responseTV) => {
         const resultsTv = responseTV.data.results;
+        console.log(resultsTv);
         if (valueGenres === "") {
           setSerieTv(resultsTv);
         } else {
@@ -91,7 +98,12 @@ function App() {
         genres={genres}
         SetValueGenres={SetValueGenres}
       />
-      <Main serieTv={serieTv} films={films} hasSearched={hasSearched} />
+      <Main
+        serieTv={serieTv}
+        films={films}
+        hasSearched={hasSearched}
+        loading={loading}
+      />
     </>
   );
 }
