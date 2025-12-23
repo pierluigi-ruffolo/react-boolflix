@@ -8,15 +8,42 @@ import Main from "./components/Main";
 
 function App() {
   const apiKey = import.meta.env.VITE_API_KEY;
+  /* valore search*/
   const [valueInput, setValueInput] = useState("");
+  /* dati interi arrivati da api */
   const [films, SetFilms] = useState([]);
   const [serieTv, setSerieTv] = useState([]);
+  /*  boolean per gestire loading e nessun film trovato e frase di benvenuto*/
   const [hasSearched, setHasSearched] = useState(false);
   const [loading, Setloading] = useState(false);
+  /* valore generi (id)*/
   const [valueGenres, SetValueGenres] = useState("");
+  /* array che contiene generi film arrivati da api*/
   const [genresMovie, setGenresMovie] = useState([]);
+  /* array che contiene generi serie tv arrivati da api*/
   const [genrestv, setGenresTv] = useState([]);
+  /* array che contiene sia generi che serie tv */
   const [genres, SetGenres] = useState([]);
+  /* dati interi o filtrati in base  a valueGenres*/
+  const [newSerieTv, setNewSerieTV] = useState([]);
+  const [newFilms, setNewFilms] = useState([]);
+
+  useEffect(() => {
+    if (valueGenres === "") {
+      setNewFilms(films);
+      setNewSerieTV(serieTv);
+    } else {
+      const convNumGenres = parseInt(valueGenres);
+      const filterFilm = films.filter((film) =>
+        film.genre_ids.includes(convNumGenres)
+      );
+      const filterSerieTv = serieTv.filter((serie) =>
+        serie.genre_ids.includes(convNumGenres)
+      );
+      setNewFilms(filterFilm);
+      setNewSerieTV(filterSerieTv);
+    }
+  }, [valueGenres, films, serieTv]);
 
   useEffect(() => {
     SetGenres([...genresMovie, ...genrestv]);
@@ -49,7 +76,6 @@ function App() {
       setValueInput("");
       return;
     }
-    const convValueGenres = parseInt(valueGenres);
     Setloading(true);
     setHasSearched(true);
     axios
@@ -57,16 +83,8 @@ function App() {
         `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${valueInput}&language=it-IT`
       )
       .then((responseMovie) => {
-        const resultsMovie = responseMovie.data.results;
-        console.log(resultsMovie);
-        if (valueGenres === "") {
-          SetFilms(resultsMovie);
-        } else {
-          const movieFilter = resultsMovie.filter((movie) =>
-            movie.genre_ids.includes(convValueGenres)
-          );
-          SetFilms(movieFilter);
-        }
+        console.log(responseMovie.data.results);
+        SetFilms(responseMovie.data.results);
         setValueInput("");
       });
     axios
@@ -74,17 +92,8 @@ function App() {
         `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${valueInput}&language=it-IT`
       )
       .then((responseTV) => {
-        const resultsTv = responseTV.data.results;
-        console.log(resultsTv);
-        if (valueGenres === "") {
-          setSerieTv(resultsTv);
-        } else {
-          const tvFilter = resultsTv.filter((tv) =>
-            tv.genre_ids.includes(convValueGenres)
-          );
-          setSerieTv(tvFilter);
-        }
-
+        console.log(responseTV.data.results);
+        setSerieTv(responseTV.data.results);
         setValueInput("");
       });
   }
@@ -99,8 +108,8 @@ function App() {
         SetValueGenres={SetValueGenres}
       />
       <Main
-        serieTv={serieTv}
-        films={films}
+        serieTv={newSerieTv}
+        films={newFilms}
         hasSearched={hasSearched}
         loading={loading}
       />
