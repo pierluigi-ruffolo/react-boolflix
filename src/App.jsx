@@ -68,7 +68,6 @@ function App() {
       )
       .then((res) => {
         setGenresMovie(res.data.genres);
-        /*  console.log(res.data.genres); */
       });
     axios
       .get(
@@ -76,7 +75,6 @@ function App() {
       )
       .then((res) => {
         setGenresTv(res.data.genres);
-        /*    console.log(res.data.genres); */
       });
   }, []);
 
@@ -93,18 +91,14 @@ function App() {
         `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${valueInput}&language=it-IT`
       )
       .then((responseMovie) => {
-        /*  console.log(responseMovie.data.results); */
         SetFilms(responseMovie.data.results);
-        setValueInput("");
       });
     axios
       .get(
         `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${valueInput}&language=it-IT`
       )
       .then((responseTV) => {
-        /*     console.log(responseTV.data.results); */
         setSerieTv(responseTV.data.results);
-        setValueInput("");
       });
   }
 

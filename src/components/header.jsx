@@ -25,7 +25,7 @@ export default function Header({
           ))}
         </select>
         <input
-          className="me-2 fs-4"
+          className="me-2 fs-4 p-1"
           type="search"
           placeholder="search..."
           value={valueInput}
